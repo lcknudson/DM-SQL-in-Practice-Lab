@@ -45,7 +45,7 @@ function makeApptCard(appt, nextAppt) {
 function getPendingAppointments() {
     axios.get('http://localhost:8765/pending')
     .then(res => {
-        for (let i = 0; i < res.data.length; i += 2) {
+        for (let i = 0; i < res.data.length; i ++) {
             const appt = res.data[i]
             const apptElem = makePendingApptCard(appt)
             pendAppts.innerHTML += apptElem    
@@ -59,7 +59,7 @@ function getUpcomingAppointments() {
     .then(res => {
         console.log('UPCOMING')
         console.log(res.data)
-        for (let i = 0; i < res.data.length; i += 2) {
+        for (let i = 0; i < res.data.length; i ++) {
             const appt = res.data[i]
             const nextAppt = res.data[i + 1] || null
             const apptElem = makeApptCard(appt, nextAppt)
@@ -72,7 +72,7 @@ function getUpcomingAppointments() {
 function getPastAppointments() {
     axios.get('http://localhost:8765/appt')
         .then(res => {
-            for (let i = 0; i < res.data.length; i += 2) {
+            for (let i = 0; i < res.data.length; i ++) {
                 const appt = res.data[i]
                 const nextAppt = res.data[i + 1] || null
                 const apptElem = makeApptCard(appt, nextAppt)
@@ -104,6 +104,6 @@ function markCompleted(id) {
     .catch(err => console.log(err))
 }
 
-// getPendingAppointments()
-// getUpcomingAppointments()
-// getPastAppointments()
+getPendingAppointments()
+getUpcomingAppointments()
+getPastAppointments()
